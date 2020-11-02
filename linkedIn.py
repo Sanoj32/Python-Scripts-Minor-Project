@@ -15,8 +15,10 @@ def linkedin():
         link = job.a['href']
         source = requests.get(link).text
         soup = BeautifulSoup(source, 'lxml')
+        print(link)
         name = soup.find('h3', class_='sub-nav-cta__header').get_text(strip=True)
         company = soup.find('a', class_='sub-nav-cta__optional-url').get_text(strip=True)
+
         address = soup.find('span', class_='topcard__flavor topcard__flavor--bullet').get_text(strip=True)
         time = soup.find_all('span', class_='job-criteria__text job-criteria__text--criteria')[1].get_text(strip=True)
         desct = soup.find('main', class_='main').get_text(strip=True)
@@ -33,6 +35,6 @@ def linkedin():
         })
     with open('C:/Projects/itjobseeker/public/jsondata/linkedin.json', 'w') as outfile:
         json.dump(data, outfile)
-
+    print("linkedin done")
 
 

@@ -5,8 +5,8 @@ from kumarijob import kumarijob
 from linkedIn import linkedin
 from merojob import merojob
 
-globaljob()
-jobsnepal()
-kumarijob()
+# globaljob()
+# jobsnepal()
+# kumarijob()
 linkedin()
 merojob()

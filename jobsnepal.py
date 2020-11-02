@@ -56,10 +56,10 @@ def jobsnepal():
         })
     with open('C:/Projects/itjobseeker/public/jsondata/jobsnepal.json', 'w') as outfile:
         json.dump(data, outfile)
+    print("jobsnepal done")
 
 
 
-jobsnepal()
 
 
 

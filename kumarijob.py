@@ -60,5 +60,6 @@ def kumarijob():
 
     with open('C:/Projects/itjobseeker/public/jsondata/kumarijob.json', 'w') as outfile:
         json.dump(data, outfile)
+    print("kumarijob done")
 
 

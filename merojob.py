@@ -11,7 +11,6 @@ def merojob():
         var = 'https://merojob.com/category/it-telecommunication/?page=' + str(count)
         count += 1
         hlink.append(var)
-        print(hlink)
 
 
     for slink in hlink:
@@ -106,3 +105,4 @@ def merojob():
 
     with open('C:/Projects/itjobseeker/public/jsondata/merojob.json', 'w') as outfile:
         json.dump(data, outfile)
+    print("merojob done")
