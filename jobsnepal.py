@@ -35,10 +35,10 @@ def jobsnepal():
         education = table_data.find_all('span', class_='font-weight-semibold')[3].get_text(strip=True)
         address = table_data.find_all('span', class_='font-weight-semibold')[4].get_text(strip=True)
         deadline = table_data.find_all('tr')[6].find_all('td')[1].get_text(strip=True)
-        try:
-            desc = soup.find('div', class_='job-details-by-emloyer').find_all('ul')[1].get_text(strip=True)
-        except:
-            desc = ""
+        # try:
+        #     desc = soup.find('div', class_='job-details-by-emloyer').find_all('ul')[1].get_text(strip=True)
+        # except:
+        #     desc = ""
         desct = soup.find('div', class_='col-lg-8').get_text(strip=True)
 
         data.append({

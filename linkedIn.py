@@ -31,7 +31,7 @@ def linkedin():
             'time':time,
             'Page_URL': link
         })
-    with open('linkedin.json', 'w') as outfile:
+    with open('C:/Projects/itjobseeker/public/jsondata/linkedin.json', 'w') as outfile:
         json.dump(data, outfile)
 
 

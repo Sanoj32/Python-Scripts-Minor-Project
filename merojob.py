@@ -74,14 +74,14 @@ def merojob():
                 skills = soup.find('span', itemprop='skills').get_text(strip=True)
             except:
                 skills = ""
-            try:
-                desc = soup.find('div', 'card-text p-2').ul.get_text(strip=True)
-            except:
-                desc = ""
-            try:
-                desc1 = soup.find_all('div', itemprop='description')[2].get_text(strip=True)
-            except:
-                desc1 = ""
+            # try:
+            #     desc = soup.find('div', 'card-text p-2').ul.get_text(strip=True)
+            # except:
+            #     desc = ""
+            # try:
+            #     desc1 = soup.find_all('div', itemprop='description')[2].get_text(strip=True)
+            # except:
+            #     desc1 = ""
             try:
                 desct = soup.find('div', class_='col-md-8').get_text(strip=True)
             except:
@@ -104,5 +104,5 @@ def merojob():
                 'Page_URL': link
             })
 
-    with open('merojob.json', 'w') as outfile:
+    with open('C:/Projects/itjobseeker/public/jsondata/merojob.json', 'w') as outfile:
         json.dump(data, outfile)
