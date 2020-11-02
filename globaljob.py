@@ -51,8 +51,8 @@ def globaljob():
             'deadline': deadline,
             'time': time,
             'education': education,
-            'desc': desc,
-            'desc1': desc1,
+            # 'desc': desc,
+            # 'desc1': desc1,
             'desct': desct,
             'experience':experience,
             'Page_URL': link

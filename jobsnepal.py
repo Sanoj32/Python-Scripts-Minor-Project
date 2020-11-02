@@ -50,7 +50,7 @@ def jobsnepal():
             'deadline': deadline,
             'education': education,
             'experience':experience,
-            'desc':desc,
+            # 'desc':desc,
             'desct':desct,
             'Page_URL': link
         })

@@ -98,8 +98,8 @@ def merojob():
                 'deadline': deadline,
                 'education': education,
                 'skills': skills,
-                'desc': desc,
-                'desc1': desc1,
+                # 'desc': desc,
+                # 'desc1': desc1,
                 'desct': desct,
                 'Page_URL': link
             })
