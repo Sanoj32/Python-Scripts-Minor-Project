@@ -29,6 +29,7 @@ def globaljob():
             deadline = details.find_all('div', class_='row')[8].find_all('p')[2].get_text(strip=True)
         except:
             pass
+        print(link)
         print(deadline)
         education = soup.find('div', class_='elements').li.get_text(strip=True)
         # try:

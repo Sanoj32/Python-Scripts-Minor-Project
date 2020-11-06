@@ -15,6 +15,7 @@ def merojob():
 
     for slink in hlink:
         try:
+            print(slink)
             source = requests.get(slink).text
         except:
             break
@@ -81,11 +82,8 @@ def merojob():
             #     desc1 = soup.find_all('div', itemprop='description')[2].get_text(strip=True)
             # except:
             #     desc1 = ""
-            try:
-                desct = soup.find('div', class_='col-md-8').get_text(strip=True)
-            except:
-                desct = ""
-
+            desct = soup.find_all('div', class_='col-md-8')[1].find_all('div', class_='card-body')[1].get_text(strip=True)
+            print(desct)
             data.append({
                 'name': name,
                 'company': company,
