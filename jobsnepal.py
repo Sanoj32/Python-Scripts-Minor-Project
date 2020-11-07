@@ -29,16 +29,28 @@ def jobsnepal():
         company = soup.find('a', class_='text-white').get_text(strip=True)
         name = soup.find('h1', class_='job-title').get_text(strip=True)
         table_data = soup.find('table', class_='table-striped')
-        vacancy = table_data.find_all('tr')[1].find_all('td')[1].get_text(strip=True)
-        time = table_data.find_all('span', class_='font-weight-semibold')[1].get_text(strip=True)
-        experience = table_data.find_all('tr')[3].span.get_text(strip=True)
-        education = table_data.find_all('span', class_='font-weight-semibold')[3].get_text(strip=True)
-        address = table_data.find_all('span', class_='font-weight-semibold')[4].get_text(strip=True)
-        deadline = table_data.find_all('tr')[6].find_all('td')[1].get_text(strip=True)
-        # try:
-        #     desc = soup.find('div', class_='job-details-by-emloyer').find_all('ul')[1].get_text(strip=True)
-        # except:
-        #     desc = ""
+        i_deadline = table_data.find_all('tr')
+        education = ""
+        experience = ""
+        for i in i_deadline:
+            index = i.td.get_text(strip=True)
+            if index == "Openings":
+                vacancy = i.find_all('td')[1].get_text(strip=True)
+            elif index == "Salary":
+                salary = i.find_all('td')[1].get_text(strip=True)
+            elif index == "Position Type":
+                time = i.find_all('td')[1].get_text(strip=True)
+            elif index == "Position Level":
+                level = i.find_all('td')[1].get_text(strip=True)
+            elif index == "Experience":
+                experience = i.find_all('td')[1].get_text(strip=True)
+            elif index == "Education":
+                education = i.find_all('td')[1].get_text(strip=True)
+            elif index == "Apply Before":
+                deadline = i.find_all('td')[1].get_text(strip=True)
+            elif index == "City":
+                address = i.find_all('td')[1].get_text(strip=True)
+
         desct = soup.find('div', class_='col-lg-8').get_text(strip=True)
 
         data.append({
@@ -50,7 +62,8 @@ def jobsnepal():
             'deadline': deadline,
             'education': education,
             'experience':experience,
-            # 'desc':desc,
+            'level':level,
+            'salary':salary,
             'desct':desct,
             'Page_URL': link
         })
@@ -61,5 +74,6 @@ def jobsnepal():
 
 
 
+jobsnepal()
 
 
