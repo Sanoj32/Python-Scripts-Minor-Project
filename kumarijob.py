@@ -44,7 +44,7 @@ def kumarijob():
         except:
             deadline = ""
         desct = soup.find('div', class_='left-side-content').get_text(strip=True)
-
+        print(link)
         data.append({
             'name': name,
             'company': company,
@@ -57,7 +57,6 @@ def kumarijob():
             'desct': desct,
             'Page_URL': link
         })
-
     with open('C:/Projects/itjobseeker/public/jsondata/kumarijob.json', 'w') as outfile:
         json.dump(data, outfile)
     print("kumarijob done")

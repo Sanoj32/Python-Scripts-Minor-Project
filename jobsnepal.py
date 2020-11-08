@@ -52,7 +52,7 @@ def jobsnepal():
                 address = i.find_all('td')[1].get_text(strip=True)
 
         desct = soup.find('div', class_='col-lg-8').get_text(strip=True)
-
+        print(link)
         data.append({
             'name': name,
             'company': company,
@@ -72,8 +72,5 @@ def jobsnepal():
     print("jobsnepal done")
 
 
-
-
-jobsnepal()
 
 

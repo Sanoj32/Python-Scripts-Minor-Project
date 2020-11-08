@@ -23,7 +23,7 @@ def linkedin():
         time = soup.find_all('span', class_='job-criteria__text job-criteria__text--criteria')[1].get_text(strip=True)
         desct = soup.find('main', class_='main').get_text(strip=True)
         deadline = soup.find('span', class_='posted-time-ago__text').get_text(strip=True)
-
+        print(link)
         data.append({
             'name': name,
             'company': company,

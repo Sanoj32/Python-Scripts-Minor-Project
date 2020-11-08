@@ -30,14 +30,7 @@ def globaljob():
         except:
             pass
         print(link)
-        print(deadline)
         education = soup.find('div', class_='elements').li.get_text(strip=True)
-        # try:
-        #     desc = soup.find('div', class_='elementss').ul.get_text(strip=True)
-        #     desc1 = ""
-        # except:
-        #     desc1 = soup.find_all('div', class_='elementss')[1].get_text(strip=True)
-        #     desc = ""
         desct = soup.find('div', class_='vacancies-details').get_text(strip=True)
         company = soup.find('section', class_='about-company').p.get_text(strip=True)
         address = soup.find('section', class_='about-company').find_all('p')[2].get_text(strip=True)
@@ -52,8 +45,6 @@ def globaljob():
             'deadline': deadline,
             'time': time,
             'education': education,
-            # 'desc': desc,
-            # 'desc1': desc1,
             'desct': desct,
             'experience':experience,
             'Page_URL': link

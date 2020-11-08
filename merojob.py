@@ -83,7 +83,7 @@ def merojob():
             # except:
             #     desc1 = ""
             desct = soup.find_all('div', class_='col-md-8')[1].find_all('div', class_='card-body')[1].get_text(strip=True)
-            print(desct)
+            print(link)
             data.append({
                 'name': name,
                 'company': company,

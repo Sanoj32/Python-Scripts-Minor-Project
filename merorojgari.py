@@ -10,9 +10,9 @@ def merorojgari():
     for var in vars:
         links.append(var.a['href'])
 
-
+    print(links)
     for link in links:
-        link = link['href']
+
         source = requests.get(link).text
         soup = BeautifulSoup(source, 'lxml')
         name = soup.find('h1', class_='job-title').get_text(strip=True)
@@ -20,7 +20,7 @@ def merorojgari():
         time = soup.find('div', id='job_type').get_text(strip=True)
         desct = soup.find('div', class_='description').get_text(strip=True)
         deadline = soup.find('div',class_='date').get_text(strip=True)
-        print(deadline)
+        print(link)
         data.append({
             'name': name,
             'company': company,
@@ -33,4 +33,3 @@ def merorojgari():
         json.dump(data, outfile)
     print("merorojgari done")
 
-merorojgari()
