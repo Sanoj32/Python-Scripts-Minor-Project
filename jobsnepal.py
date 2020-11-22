@@ -4,7 +4,8 @@ import json
 from database import stored_links
 
 def jobsnepal():
-    data = []
+    with open('C:/Projects/itjobseeker/public/jsondata/jobsnepal.json','r') as readfile:
+        data = json.load(readfile)
     hlink = []
     hlink.append('https://www.jobsnepal.com/category/information-technology-jobs')
 
@@ -36,6 +37,7 @@ def jobsnepal():
             education = ""
             experience = ""
             salary = ""
+            level = ""
             for i in i_deadline:
                 index = i.td.get_text(strip=True)
                 if index == "Openings":
@@ -78,5 +80,5 @@ def jobsnepal():
     print("jobsnepal done")
 
 
-
+jobsnepal()
 

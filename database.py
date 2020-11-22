@@ -15,11 +15,12 @@ cursor = connection.cursor()
 
 cursor.execute("SELECT url FROM jobs;")
 stored_links = cursor.fetchall()
+stored_links = list(itertools.chain(*stored_links))
+jsondata =[]
 
 # Python code to convert list of tuple into list
 
 # Using itertools
-stored_links = list(itertools.chain(*stored_links))
 
 
 connection.commit()

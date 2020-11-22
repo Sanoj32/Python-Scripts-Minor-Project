@@ -15,6 +15,8 @@ def merorojgari():
     print(links)
     for link in links:
         if link not in stored_links:
+            print("New job found !")
+            print(link)
             source = requests.get(link).text
             soup = BeautifulSoup(source, 'lxml')
             name = soup.find('h1', class_='job-title').get_text(strip=True)
@@ -22,7 +24,6 @@ def merorojgari():
             time = soup.find('div', id='job_type').get_text(strip=True)
             desct = soup.find('div', class_='description').get_text(strip=True)
             deadline = soup.find('div',class_='date').get_text(strip=True)
-            print(link)
             data.append({
                 'name': name,
                 'company': company,

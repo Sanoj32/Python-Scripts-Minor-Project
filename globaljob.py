@@ -5,7 +5,9 @@ from database import stored_links
 
 
 def globaljob():
-    data = []
+    with open('C:/Projects/itjobseeker/public/jsondata/globaljob.json','r') as readfile:
+        data = json.load(readfile)
+
     links = []
     hyper_source = requests.get('https://globaljob.com.np/category/it/it/630').text
     soup = BeautifulSoup(hyper_source, 'lxml')
@@ -17,6 +19,7 @@ def globaljob():
     for link in links:
         if link not in stored_links:
             print("New job found !")
+            print(link)
             source = requests.get(link).text
             soup = BeautifulSoup(source, 'lxml')
             name = soup.find('div', class_='headline').get_text(strip=True)
@@ -57,3 +60,4 @@ def globaljob():
     with open('C:/Projects/itjobseeker/public/jsondata/globaljob.json', 'w') as outfile:
         json.dump(data, outfile)
     print("globaljob done")
+globaljob()

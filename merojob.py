@@ -27,6 +27,7 @@ def merojob():
 
         for link in links:  # this loops over those jobs on the pagination page
             if link not in stored_links:
+                print("New job found",link)
                 source = requests.get(link).text
                 soup = BeautifulSoup(source, "lxml")
 
@@ -41,7 +42,6 @@ def merojob():
                 except:
                     name = ""
                 table_data = details.table
-                print(link)
                 try:
                     level = table_data.find_all('tr')[1].find_all('td')[2].a.get_text(strip=True)
                 except AttributeError:

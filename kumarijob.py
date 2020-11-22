@@ -5,7 +5,8 @@ from database import stored_links
 
 def kumarijob():
     links = []
-    data = []
+    with open('C:/Projects/itjobseeker/public/jsondata/kumarijob.json','r') as readfile:
+        data = json.load(readfile)
     sorurce = requests.get('https://www.kumarijob.com/jobs/it_jobs').text
     soup = BeautifulSoup(sorurce, 'lxml')
     count = 0
@@ -15,6 +16,7 @@ def kumarijob():
         links.append(link)
     for link in links:
         if link not in stored_links:
+            print("New job found",link)
             source = requests.get(link).text
             soup = BeautifulSoup(source, 'lxml')
             details = soup.find('div', class_='job-title')
