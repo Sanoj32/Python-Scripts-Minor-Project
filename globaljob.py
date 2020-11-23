@@ -60,4 +60,3 @@ def globaljob():
     with open('C:/Projects/itjobseeker/public/jsondata/globaljob.json', 'w') as outfile:
         json.dump(data, outfile)
     print("globaljob done")
-globaljob()

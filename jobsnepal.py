@@ -80,5 +80,3 @@ def jobsnepal():
     print("jobsnepal done")
 
 
-jobsnepal()
-
