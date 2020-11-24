@@ -12,7 +12,6 @@ def merorojgari():
     for var in vars:
         links.append(var.a['href'])
 
-    print(links)
     for link in links:
         if link not in stored_links:
             print("New job found !")
