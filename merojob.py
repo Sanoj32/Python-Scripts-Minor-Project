@@ -4,7 +4,8 @@ import json
 from database import stored_links
 
 def merojob():
-    data = []
+    with open('C:/Projects/itjobseeker/public/jsondata/merojob.json', 'r') as readfile:
+        data = json.load(readfile)
     hlink = []
     count = 1
     while count < 20:
@@ -97,3 +98,5 @@ def merojob():
     with open('C:/Projects/itjobseeker/public/jsondata/merojob.json', 'w') as outfile:
         json.dump(data, outfile)
     print("merojob done")
+
+merojob()
