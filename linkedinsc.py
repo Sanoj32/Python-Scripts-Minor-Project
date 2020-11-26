@@ -5,45 +5,45 @@ from bs4 import BeautifulSoup
 from linkedin_jobs_scraper import LinkedinScraper
 from linkedin_jobs_scraper.events import Events, EventData
 from linkedin_jobs_scraper.query import Query, QueryOptions, QueryFilters
-from database import jsondata
+from database import stored_links
 import json
+
+jsondata = []
+
 def linkedinsc():
     # Change root logger level (default is WARN)
-    logging.basicConfig(level = logging.INFO)
-
-
+    logging.basicConfig(level=logging.INFO)
     def on_data(data: EventData):
         # print('[ON_DATA]', data.title, data.company, data.date, data.link,data.seniority_level,data.employment_type)
-        source = requests.get(data.link).text
-
-        soup = BeautifulSoup(source, 'lxml')
-        desct = soup.find('main', class_='main').get_text(strip=True)
 
         link = data.link
         link = link.split('?', 1)[0]
-        print(link)
+
+        print("NEW JOB FOUND !!!",link)
+        source = requests.get(data.link).text
+        soup = BeautifulSoup(source, 'lxml')
+        desct = soup.find('main', class_='main').get_text(strip=True)
         jsondata.append({
-                    'name': data.title,
-                    'company': data.company,
-                    'address': data.place,
-                    'deadline': data.date,
-                    'time': data.employment_type,
-                    'Page_URL': link,
-                    'desct':desct
-                })
+            'name': data.title,
+            'company': data.company,
+            'address': data.place,
+            'deadline': data.date,
+            'time': data.employment_type,
+            'Page_URL': link,
+            'desct': desct
+        })
 
     def on_error(error):
         print('[ON_ERROR]', error)
 
-
     def on_end():
         print('[ON_END]')
-
 
     scraper = LinkedinScraper(
         chrome_options=None,  # You can pass your custom Chrome options here
         headless=True,  # Overrides headless mode only if chrome_options is None
-        max_workers=1,  # How many threads will be spawned to run queries concurrently (one Chrome driver for each thread)
+        max_workers=1,
+        # How many threads will be spawned to run queries concurrently (one Chrome driver for each thread)
         slow_mo=0.4,  # Slow down the scraper to avoid 'Too many requests (429)' errors
     )
 
@@ -79,4 +79,5 @@ def linkedinsc():
     scraper.run(queries)
     with open('C:/Projects/itjobseeker/public/jsondata/linkedin.json', 'w') as outfile:
         json.dump(jsondata, outfile)
-        print("linkedin done")
+    print("linkedin done")
+

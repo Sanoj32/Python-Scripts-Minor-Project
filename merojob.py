@@ -98,5 +98,3 @@ def merojob():
     with open('C:/Projects/itjobseeker/public/jsondata/merojob.json', 'w') as outfile:
         json.dump(data, outfile)
     print("merojob done")
-
-merojob()
