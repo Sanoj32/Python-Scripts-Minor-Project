@@ -2,7 +2,9 @@ from bs4 import BeautifulSoup
 import requests
 import json
 
+
 def merojob():
+    jobcount = 0
     with open('C:/Projects/itjobseeker/public/jsondata/merojob.json', 'r') as readfile:
         try:
             data = json.load(readfile)
@@ -20,7 +22,6 @@ def merojob():
         count += 1
         hlink.append(var)
 
-
     for slink in hlink:
         try:
             source = requests.get(slink).text
@@ -28,14 +29,17 @@ def merojob():
             break
         soup = BeautifulSoup(source, "lxml")
         links = []
-        for i in soup.find_all('h1', class_="media-heading"):  # this gives the link of all the jobs in the pagination page
+        for i in soup.find_all('h1',
+                               class_="media-heading"):  # this gives the link of all the jobs in the pagination page
             link = i.a['href']
             link = "https://merojob.com" + link
             links.append(link)
 
         for link in links:  # this loops over those jobs on the pagination page
             if link not in stored_links:
-                print("New job found",link)
+                stored_links.append(link)
+                jobcount += 1
+                print("[" + str(jobcount) + "]", "New job found ", link)
                 source = requests.get(link).text
                 soup = BeautifulSoup(source, "lxml")
 
@@ -74,7 +78,8 @@ def merojob():
                     salary = ""
                 try:
                     deadline = table_data.find_all('tr')[6].find_all('td')[2].get_text(strip=True)
-                    deadline = deadline.split(')',1)[0]
+                    deadline = deadline.split('(', 1)[0]
+                    print(deadline)
                 except:
                     deadline = ""
                 try:
@@ -85,7 +90,8 @@ def merojob():
                     skills = soup.find('span', itemprop='skills').get_text(strip=True)
                 except:
                     skills = ""
-                desct = soup.find_all('div', class_='col-md-8')[1].find_all('div', class_='card-body')[1].get_text(strip=True)
+                desct = soup.find_all('div', class_='col-md-8')[1].find_all('div', class_='card-body')[1].get_text(
+                    strip=True)
 
                 data.append({
                     'name': name,
@@ -100,7 +106,7 @@ def merojob():
                     'skills': skills,
                     'desct': desct,
                     'Page_URL': link,
-                    'websitenmae' : 'merojob.com'
+                    'websitename': 'merojob.com'
                 })
             else:
                 print("Already in the database")

@@ -4,6 +4,7 @@ import json
 
 
 def globaljob():
+    count = 0
     with open('C:/Projects/itjobseeker/public/jsondata/globaljob.json','r') as readfile:
         try:
             data = json.load(readfile)
@@ -24,7 +25,9 @@ def globaljob():
         links.append(link)
     for link in links:
         if link not in stored_links:
-            print("New job found !",link)
+            stored_links.append(link)
+            count += 1
+            print("[" + str(count) + "]", "New job found !",link)
             source = requests.get(link).text
             soup = BeautifulSoup(source, 'lxml')
             name = soup.find('div', class_='headline').get_text(strip=True)
@@ -58,7 +61,7 @@ def globaljob():
                 'desct': desct,
                 'experience': experience,
                 'Page_URL': link,
-                'websitename':'globaljob.com'
+                'websitename': 'globaljob.com'
             })
         else:
             print("Already in the database")

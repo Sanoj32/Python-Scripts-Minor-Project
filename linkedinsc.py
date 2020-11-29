@@ -27,6 +27,7 @@ def linkedinsc():
         link = data.link
         link = link.split('?', 1)[0]
         if link not in stored_links:
+            stored_links.append(link)
             print("NEW JOB FOUND !!!",link)
             source = requests.get(data.link).text
             soup = BeautifulSoup(source, 'lxml')
@@ -91,4 +92,3 @@ def linkedinsc():
     print("linkedin done")
 
 
-linkedinsc()

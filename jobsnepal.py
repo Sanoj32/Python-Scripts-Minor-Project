@@ -3,6 +3,7 @@ import requests
 import json
 
 def jobsnepal():
+    count = 0
     with open('C:/Projects/itjobseeker/public/jsondata/jobsnepal.json','r') as readfile:
         try:
             data = json.load(readfile)
@@ -33,7 +34,8 @@ def jobsnepal():
             links.append(var)
     for link in links:
         if link not in stored_links:
-            print("New job found !",link)
+            stored_links.append(link)
+            print("[" + str(count) + "]", "New job found !",link)
             source = requests.get(link).text
             soup = BeautifulSoup(source, 'lxml')
 
@@ -79,7 +81,7 @@ def jobsnepal():
                 'salary':salary,
                 'desct':desct,
                 'Page_URL': link,
-                'websitename':'jobsnepal.com'
+                'websitename': 'jobsnepal.com'
             })
         else:
             print("Already in database")

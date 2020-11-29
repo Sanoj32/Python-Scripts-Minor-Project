@@ -5,6 +5,7 @@ import json
 
 def kantipurjob():
     links = []
+    count = 0
     with open('C:/Projects/itjobseeker/public/jsondata/kantipurjob.json', 'r') as readfile:
         try:
             data = json.load(readfile)
@@ -24,6 +25,7 @@ def kantipurjob():
         links.append(link)
     for link in links:
         if link not in stored_links:
+            stored_links.append(link)
             print('New job found', link)
             source = requests.get(link).text
             soup = BeautifulSoup(source, 'lxml')

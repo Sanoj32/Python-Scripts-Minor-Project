@@ -5,6 +5,7 @@ import json
 
 def merorojgari():
     links = []
+    count = 0
     with open('C:/Projects/itjobseeker/public/jsondata/merorojgari.json', 'r') as readfile:
         try:
             data = json.load(readfile)
@@ -23,7 +24,9 @@ def merorojgari():
 
     for link in links:
         if link not in stored_links:
-            print("New job found ", link)
+            stored_links.append(link)
+            count += 1
+            print("["+str(count) +"]" ,"New job found ", link)
             source = requests.get(link).text
             soup = BeautifulSoup(source, 'lxml')
             name = soup.find('h1', class_='job-title').get_text(strip=True)
@@ -38,11 +41,10 @@ def merorojgari():
                 'deadline': deadline,
                 'desct': desct,
                 'Page_URL': link,
-                'websitename':'merorojgari.com'
+                'websitename': 'merorojgari.com'
             })
         else:
             print("Already in the database")
     with open('C:/Projects/itjobseeker/public/jsondata/merorojgari.json', 'w') as outfile:
         json.dump(data, outfile)
     print("merorojgari done")
-

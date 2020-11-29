@@ -8,13 +8,14 @@ from linkedinsc import  linkedinsc
 from kathmandujob import kathmandujob
 from kantipurjob import  kantipurjob
 
-globaljob()
-jobsnepal()
-kumarijob()
-merorojgari()
-merojob()
-linkedinsc()
+# globaljob()
+# jobsnepal()
+# kumarijob()
+# merorojgari()
+# linkedinsc()
 kathmandujob()
-kantipurjob()
+# kantipurjob()
+# merojob()
+
 
 
