@@ -1,14 +1,18 @@
 from bs4 import BeautifulSoup
 import requests
 import json
-from database import stored_links
 
 def jobsnepal():
     with open('C:/Projects/itjobseeker/public/jsondata/jobsnepal.json','r') as readfile:
         try:
             data = json.load(readfile)
+            stored_links = []
+            for single_data in data:
+                stored_links.append(single_data['Page_URL'])
+
         except:
             data = []
+            stored_links =[]
     hlink = []
     hlink.append('https://www.jobsnepal.com/category/information-technology-jobs')
 

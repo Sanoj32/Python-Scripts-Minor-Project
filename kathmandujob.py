@@ -1,15 +1,19 @@
 from bs4 import BeautifulSoup
 import requests
 import json
-from database import stored_links
 
 def kathmandujob():
     links = []
     with open('C:/Projects/itjobseeker/public/jsondata/kathmandujob.json', 'r') as readfile:
         try:
             data = json.load(readfile)
+            stored_links = []
+            for single_data in data:
+                stored_links.append(single_data['Page_URL'])
+
         except:
             data = []
+            stored_links =[]
     nums = [1,14,28,42,56]
     for num in nums:
         num = str(num)

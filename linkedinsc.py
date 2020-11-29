@@ -5,12 +5,19 @@ from bs4 import BeautifulSoup
 from linkedin_jobs_scraper import LinkedinScraper
 from linkedin_jobs_scraper.events import Events, EventData
 from linkedin_jobs_scraper.query import Query, QueryOptions, QueryFilters
-from database import stored_links
 import json
 
-jsondata = []
 
 def linkedinsc():
+
+    with open('C:/Projects/itjobseeker/public/jsondata/linkedin.json', 'r') as readfile:
+        try:
+            jsondata = json.load(readfile)
+            stored_links = []
+            for single_data in jsondata:
+                stored_links.append(single_data['Page_URL'])
+        except:
+            jsondata = []
     # Change root logger level (default is WARN)
     logging.basicConfig(level=logging.INFO)
     def on_data(data: EventData):
@@ -18,20 +25,20 @@ def linkedinsc():
 
         link = data.link
         link = link.split('?', 1)[0]
-
-        print("NEW JOB FOUND !!!",link)
-        source = requests.get(data.link).text
-        soup = BeautifulSoup(source, 'lxml')
-        desct = soup.find('main', class_='main').get_text(strip=True)
-        jsondata.append({
-            'name': data.title,
-            'company': data.company,
-            'address': data.place,
-            'deadline': data.date,
-            'time': data.employment_type,
-            'Page_URL': link,
-            'desct': desct
-        })
+        if link not in stored_links:
+            print("NEW JOB FOUND !!!",link)
+            source = requests.get(data.link).text
+            soup = BeautifulSoup(source, 'lxml')
+            desct = soup.find('main', class_='main').get_text(strip=True)
+            jsondata.append({
+                'name': data.title,
+                'company': data.company,
+                'address': data.place,
+                'deadline': data.date,
+                'time': data.employment_type,
+                'Page_URL': link,
+                'desct': desct
+            })
 
     def on_error(error):
         print('[ON_ERROR]', error)
@@ -80,4 +87,3 @@ def linkedinsc():
     with open('C:/Projects/itjobseeker/public/jsondata/linkedin.json', 'w') as outfile:
         json.dump(jsondata, outfile)
     print("linkedin done")
-

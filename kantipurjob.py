@@ -1,15 +1,19 @@
 from bs4 import BeautifulSoup
 import requests
 import json
-from database import stored_links
 
 def kantipurjob():
     links = []
     with open('C:/Projects/itjobseeker/public/jsondata/kantipurjob.json', 'r') as readfile:
         try:
             data = json.load(readfile)
+            stored_links = []
+            for single_data in data:
+                stored_links.append(single_data['Page_URL'])
+
         except:
             data = []
+            stored_links =[]
     source = requests.get('https://kantipurjob.com/searchjob?category=25').text
     soup = BeautifulSoup(source,'lxml')
     temp = soup.find_all('div',class_='company-info-blk')

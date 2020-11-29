@@ -1,15 +1,19 @@
 from bs4 import BeautifulSoup
 import  requests
 import  json
-from database import stored_links
 
 def kumarijob():
     links = []
     with open('C:/Projects/itjobseeker/public/jsondata/kumarijob.json','r') as readfile:
         try:
             data = json.load(readfile)
+            stored_links = []
+            for single_data in data:
+                stored_links.append(single_data['Page_URL'])
+
         except:
             data = []
+            stored_links = []
     sorurce = requests.get('https://www.kumarijob.com/jobs/it_jobs').text
     soup = BeautifulSoup(sorurce, 'lxml')
     count = 0

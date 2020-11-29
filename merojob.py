@@ -1,14 +1,18 @@
 from bs4 import BeautifulSoup
 import requests
 import json
-from database import stored_links
 
 def merojob():
     with open('C:/Projects/itjobseeker/public/jsondata/merojob.json', 'r') as readfile:
         try:
             data = json.load(readfile)
+            stored_links = []
+            for single_data in data:
+                stored_links.append(single_data['Page_URL'])
+
         except:
             data = []
+            stored_links = []
     hlink = []
     count = 1
     while count < 20:

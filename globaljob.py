@@ -1,15 +1,19 @@
 from bs4 import BeautifulSoup
 import requests
 import json
-from database import stored_links
 
 
 def globaljob():
     with open('C:/Projects/itjobseeker/public/jsondata/globaljob.json','r') as readfile:
         try:
             data = json.load(readfile)
+            stored_links = []
+            for single_data in data:
+                stored_links.append(single_data['Page_URL'])
+
         except:
             data = []
+            stored_links = []
     links = []
     hyper_source = requests.get('https://globaljob.com.np/category/it/it/630').text
     soup = BeautifulSoup(hyper_source, 'lxml')

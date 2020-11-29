@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
 import json
-from database import stored_links
 
 
 def merorojgari():
@@ -9,8 +8,13 @@ def merorojgari():
     with open('C:/Projects/itjobseeker/public/jsondata/merorojgari.json', 'r') as readfile:
         try:
             data = json.load(readfile)
+            stored_links = []
+            for single_data in data:
+                stored_links.append(single_data['Page_URL'])
+
         except:
             data = []
+            stored_links = []
     source = requests.get('https://www.merorojgari.com/cat/information-technology/').text
     soup = BeautifulSoup(source, 'lxml')
     vars = soup.find_all('h2', class_='title-job')
