@@ -6,7 +6,10 @@ from database import stored_links
 def kumarijob():
     links = []
     with open('C:/Projects/itjobseeker/public/jsondata/kumarijob.json','r') as readfile:
-        data = json.load(readfile)
+        try:
+            data = json.load(readfile)
+        except:
+            data = []
     sorurce = requests.get('https://www.kumarijob.com/jobs/it_jobs').text
     soup = BeautifulSoup(sorurce, 'lxml')
     count = 0

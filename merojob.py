@@ -5,7 +5,10 @@ from database import stored_links
 
 def merojob():
     with open('C:/Projects/itjobseeker/public/jsondata/merojob.json', 'r') as readfile:
-        data = json.load(readfile)
+        try:
+            data = json.load(readfile)
+        except:
+            data = []
     hlink = []
     count = 1
     while count < 20:

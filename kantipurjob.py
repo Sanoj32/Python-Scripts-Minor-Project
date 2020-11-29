@@ -5,8 +5,11 @@ from database import stored_links
 
 def kantipurjob():
     links = []
-    with open('C:/Projects/itjobseeker/public/jsondata/kathmandujob.json', 'r') as readfile:
-        data = json.load(readfile)
+    with open('C:/Projects/itjobseeker/public/jsondata/kantipurjob.json', 'r') as readfile:
+        try:
+            data = json.load(readfile)
+        except:
+            data = []
     source = requests.get('https://kantipurjob.com/searchjob?category=25').text
     soup = BeautifulSoup(source,'lxml')
     temp = soup.find_all('div',class_='company-info-blk')
@@ -51,7 +54,3 @@ def kantipurjob():
         json.dump(data, outfile)
         print("Kantipurjob done")
 
-
-
-
-kantipurjob()

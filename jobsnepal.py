@@ -5,7 +5,10 @@ from database import stored_links
 
 def jobsnepal():
     with open('C:/Projects/itjobseeker/public/jsondata/jobsnepal.json','r') as readfile:
-        data = json.load(readfile)
+        try:
+            data = json.load(readfile)
+        except:
+            data = []
     hlink = []
     hlink.append('https://www.jobsnepal.com/category/information-technology-jobs')
 
@@ -26,7 +29,7 @@ def jobsnepal():
             links.append(var)
     for link in links:
         if link not in stored_links:
-            print("New job found !")
+            print("New job found !",link)
             source = requests.get(link).text
             soup = BeautifulSoup(source, 'lxml')
 

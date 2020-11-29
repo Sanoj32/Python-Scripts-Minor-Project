@@ -6,8 +6,11 @@ from database import stored_links
 def kathmandujob():
     links = []
     with open('C:/Projects/itjobseeker/public/jsondata/kathmandujob.json', 'r') as readfile:
-        data = json.load(readfile)
-    nums = [1,14,28,42,56,70]
+        try:
+            data = json.load(readfile)
+        except:
+            data = []
+    nums = [1,14,28,42,56]
     for num in nums:
         num = str(num)
         hyper_source = requests.get('https://kathmandujobs.com/jobs/' + num).text
@@ -62,4 +65,3 @@ def kathmandujob():
     with open('C:/Projects/itjobseeker/public/jsondata/kathmandujob.json', 'w') as outfile:
         json.dump(data, outfile)
 
-kathmandujob()

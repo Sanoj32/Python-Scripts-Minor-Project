@@ -6,8 +6,11 @@ from database import stored_links
 
 def merorojgari():
     links = []
-    with open('C:/Projects/itjobseeker/public/jsondata/kathmandujob.json', 'r') as readfile:
-        data = json.load(readfile)
+    with open('C:/Projects/itjobseeker/public/jsondata/merorojgari.json', 'r') as readfile:
+        try:
+            data = json.load(readfile)
+        except:
+            data = []
     source = requests.get('https://www.merorojgari.com/cat/information-technology/').text
     soup = BeautifulSoup(source, 'lxml')
     vars = soup.find_all('h2', class_='title-job')

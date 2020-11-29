@@ -6,6 +6,7 @@ from merojob import merojob
 from merorojgari import merorojgari
 from linkedinsc import  linkedinsc
 from kathmandujob import kathmandujob
+from kantipurjob import  kantipurjob
 
 globaljob()
 jobsnepal()
@@ -14,5 +15,6 @@ merorojgari()
 merojob()
 linkedinsc()
 kathmandujob()
+kantipurjob()
 
 
