@@ -37,7 +37,8 @@ def merorojgari():
                 'time': time,
                 'deadline': deadline,
                 'desct': desct,
-                'Page_URL': link
+                'Page_URL': link,
+                'websitename':'merorojgari.com'
             })
         else:
             print("Already in the database")

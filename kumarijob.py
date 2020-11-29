@@ -67,7 +67,8 @@ def kumarijob():
                 'education': education,
                 'experience':experience,
                 'desct': desct,
-                'Page_URL': link
+                'Page_URL': link,
+                'websitename':'kumarijob.com'
             })
         else:
             print("Already in the database")

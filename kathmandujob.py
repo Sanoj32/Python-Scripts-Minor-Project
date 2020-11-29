@@ -62,7 +62,8 @@ def kathmandujob():
                     'level': level,
                     'salary': salary,
                     'desct': desct,
-                    'Page_URL': link
+                    'Page_URL': link,
+                    'websitename' : 'globaljob.com'
                 })
             else:
                 print("Alredy in the database")

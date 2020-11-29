@@ -78,7 +78,8 @@ def jobsnepal():
                 'level':level,
                 'salary':salary,
                 'desct':desct,
-                'Page_URL': link
+                'Page_URL': link,
+                'websitename':'jobsnepal.com'
             })
         else:
             print("Already in database")

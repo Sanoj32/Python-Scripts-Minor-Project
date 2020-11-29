@@ -74,6 +74,7 @@ def merojob():
                     salary = ""
                 try:
                     deadline = table_data.find_all('tr')[6].find_all('td')[2].get_text(strip=True)
+                    deadline = deadline.split(')',1)[0]
                 except:
                     deadline = ""
                 try:
@@ -98,7 +99,8 @@ def merojob():
                     'education': education,
                     'skills': skills,
                     'desct': desct,
-                    'Page_URL': link
+                    'Page_URL': link,
+                    'websitenmae' : 'merojob.com'
                 })
             else:
                 print("Already in the database")

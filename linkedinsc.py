@@ -18,6 +18,7 @@ def linkedinsc():
                 stored_links.append(single_data['Page_URL'])
         except:
             jsondata = []
+            stored_links = []
     # Change root logger level (default is WARN)
     logging.basicConfig(level=logging.INFO)
     def on_data(data: EventData):
@@ -37,7 +38,8 @@ def linkedinsc():
                 'deadline': data.date,
                 'time': data.employment_type,
                 'Page_URL': link,
-                'desct': desct
+                'desct': desct,
+                'websitename':'np.linkedin.com'
             })
 
     def on_error(error):
@@ -67,7 +69,7 @@ def linkedinsc():
         #     )
         # ),
         Query(
-            query='Developer',
+            query='developer',
             options=QueryOptions(
                 locations=['Nepal'],
                 optimize=True,
@@ -87,3 +89,6 @@ def linkedinsc():
     with open('C:/Projects/itjobseeker/public/jsondata/linkedin.json', 'w') as outfile:
         json.dump(jsondata, outfile)
     print("linkedin done")
+
+
+linkedinsc()

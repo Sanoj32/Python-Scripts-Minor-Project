@@ -57,7 +57,8 @@ def globaljob():
                 'education': education,
                 'desct': desct,
                 'experience': experience,
-                'Page_URL': link
+                'Page_URL': link,
+                'websitename':'globaljob.com'
             })
         else:
             print("Already in the database")
