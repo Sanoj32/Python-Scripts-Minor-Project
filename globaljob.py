@@ -46,7 +46,11 @@ def globaljob():
             education = soup.find('div', class_='elements').li.get_text(strip=True)
             desct = soup.find('div', class_='vacancies-details').get_text(strip=True)
             company = soup.find('section', class_='about-company').p.get_text(strip=True)
+            company = company.split(':')[1]
             address = soup.find('section', class_='about-company').find_all('p')[2].get_text(strip=True)
+            address = address.split(':')[1]
+            print(company,address)
+
 
             data.append({
                 'name': name,
@@ -69,3 +73,4 @@ def globaljob():
     with open('C:/Projects/itjobseeker/public/jsondata/globaljob.json', 'w') as outfile:
         json.dump(data, outfile)
     print("globaljob done")
+

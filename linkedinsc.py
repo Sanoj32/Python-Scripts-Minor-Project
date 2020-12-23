@@ -70,7 +70,7 @@ def linkedinsc():
         #     )
         # ),
         Query(
-            query='developer',
+            query='it',
             options=QueryOptions(
                 locations=['Nepal'],
                 optimize=True,
@@ -84,11 +84,25 @@ def linkedinsc():
                 # )
             )
         ),
+        Query(
+            query='developer',
+            options=QueryOptions(
+                locations=['Nepal'],
+                optimize=True,
+                limit=70,
+                # filters=QueryFilters(
+                #     company_jobs_url='https://www.linkedin.com/jobs/search/?f_C=1441%2C17876832%2C791962%2C2374003%2C18950635%2C16140%2C10440912&geoId=92000000',  # Filter by companies
+                #     relevance=RelevanceFilters.RECENT,
+                #     time=TimeFilters.MONTH,
+                #     type=[TypeFilters.FULL_TIME, TypeFilters.INTERNSHIP],
+                #     experience=None,
+                # )
+            )
+        )
     ]
 
     scraper.run(queries)
     with open('C:/Projects/itjobseeker/public/jsondata/linkedin.json', 'w') as outfile:
         json.dump(jsondata, outfile)
     print("linkedin done")
-
 

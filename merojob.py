@@ -17,7 +17,7 @@ def merojob():
             stored_links = []
     hlink = []
     count = 1
-    while count < 20:
+    while count < 25:
         var = 'https://merojob.com/category/it-telecommunication/?page=' + str(count)
         count += 1
         hlink.append(var)

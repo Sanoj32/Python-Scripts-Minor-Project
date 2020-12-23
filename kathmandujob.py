@@ -16,7 +16,14 @@ def kathmandujob():
         except:
             data = []
             stored_links = []
-    nums = [1, 14, 28, 42, 56]
+    nums  = [1, 14, 28, 42, 56, 70]
+# 84, 98, 112, 126, 140]
+#   [ 154, 168, 182, 196, 210, 224, 238, 252, 266, 280, 294, 308, 322, 336]
+#     [  350, 364, 378, 392, 406, 420, 434, 448, 462, 476]
+#     nums = [      490, 504, 518, 532, 546, 560, 574, 588, 602, 616, 630,
+#      644, 658, 672, 686, 700, 714, 728, 742, 756, 770, 784, 798,
+#      812, 826, 840, 854, 868, 882, 896, 910, 924, 938]
+
     for num in nums:
         num = str(num)
         hyper_source = requests.get('https://kathmandujobs.com/jobs/' + num).text
@@ -29,6 +36,7 @@ def kathmandujob():
             links.append(link)
         for link in links:
             if link not in stored_links:
+                print('New job found', link)
                 stored_links.append(link)
                 count += 1
                 source = requests.get(link).text
@@ -73,4 +81,3 @@ def kathmandujob():
     with open('C:/Projects/itjobseeker/public/jsondata/kathmandujob.json', 'w') as outfile:
         json.dump(data, outfile)
         print("Kathmandu jobs done")
-kathmandujob()
