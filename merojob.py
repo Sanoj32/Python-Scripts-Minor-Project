@@ -79,7 +79,6 @@ def merojob():
                 try:
                     deadline = table_data.find_all('tr')[6].find_all('td')[2].get_text(strip=True)
                     deadline = deadline.split('(', 1)[0]
-                    print(deadline)
                 except:
                     deadline = ""
                 try:

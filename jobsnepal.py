@@ -35,7 +35,9 @@ def jobsnepal():
     for link in links:
         if link not in stored_links:
             stored_links.append(link)
+            count = count + 1
             print("[" + str(count) + "]", "New job found !",link)
+
             source = requests.get(link).text
             soup = BeautifulSoup(source, 'lxml')
 
@@ -47,6 +49,7 @@ def jobsnepal():
             experience = ""
             salary = ""
             level = ""
+            time = ""
             for i in i_deadline:
                 index = i.td.get_text(strip=True)
                 if index == "Openings":
@@ -90,3 +93,4 @@ def jobsnepal():
     print("jobsnepal done")
 
 
+jobsnepal()

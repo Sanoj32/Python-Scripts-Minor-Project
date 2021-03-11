@@ -8,7 +8,8 @@ from linkedinsc import  linkedinsc
 from kathmandujob import kathmandujob
 from kantipurjob import  kantipurjob
 from ramrojob import ramrojob
-
+from merorojgarisc import merorojgarisc
+merorojgarisc()
 globaljob()
 jobsnepal()
 kumarijob()

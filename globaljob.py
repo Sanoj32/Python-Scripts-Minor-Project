@@ -16,7 +16,7 @@ def globaljob():
             data = []
             stored_links = []
     links = []
-    hyper_source = requests.get('https://globaljob.com.np/category/it/it/630').text
+    hyper_source = requests.get('https://globaljob.com.np/category/it/it/649').text
     soup = BeautifulSoup(hyper_source, 'lxml')
     jobs = soup('div', class_='col-md-6')
 

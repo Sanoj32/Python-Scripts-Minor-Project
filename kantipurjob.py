@@ -20,9 +20,12 @@ def kantipurjob():
     soup = BeautifulSoup(source, 'lxml')
     temp = soup.find_all('div', class_='company-info-blk')
     for tem in temp:
-        link = tem.h2.a['href']
-        link = 'https://kantipurjob.com' + link
-        links.append(link)
+        try:
+            link = tem.h2.a['href']
+            link = 'https://kantipurjob.com' + link
+            links.append(link)
+        except:
+            print('No jobs found');
     for link in links:
         if link not in stored_links:
             stored_links.append(link)

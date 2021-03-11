@@ -54,7 +54,7 @@ def linkedinsc():
         headless=True,  # Overrides headless mode only if chrome_options is None
         max_workers=1,
         # How many threads will be spawned to run queries concurrently (one Chrome driver for each thread)
-        slow_mo=0.4,  # Slow down the scraper to avoid 'Too many requests (429)' errors
+        slow_mo=1.5,  # Slow down the scraper to avoid 'Too many requests (429)' errors
     )
 
     # Add event listeners
@@ -83,21 +83,6 @@ def linkedinsc():
                 #     experience=None,
                 # )
             )
-        ),
-        Query(
-            query='developer',
-            options=QueryOptions(
-                locations=['Nepal'],
-                optimize=True,
-                limit=70,
-                # filters=QueryFilters(
-                #     company_jobs_url='https://www.linkedin.com/jobs/search/?f_C=1441%2C17876832%2C791962%2C2374003%2C18950635%2C16140%2C10440912&geoId=92000000',  # Filter by companies
-                #     relevance=RelevanceFilters.RECENT,
-                #     time=TimeFilters.MONTH,
-                #     type=[TypeFilters.FULL_TIME, TypeFilters.INTERNSHIP],
-                #     experience=None,
-                # )
-            )
         )
     ]
 
@@ -105,4 +90,5 @@ def linkedinsc():
     with open('C:/Projects/itjobseeker/public/jsondata/linkedin.json', 'w') as outfile:
         json.dump(jsondata, outfile)
     print("linkedin done")
+
 

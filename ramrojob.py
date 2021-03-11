@@ -1,11 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
 import json
+from selenium import webdriver
 import mechanize
-from bs4 import BeautifulSoup
 import urllib.request
-import http.cookiejar  # in python3
-
+import http.cookiejar
 
 def ramrojob():
     with open('C:/Projects/itjobseeker/public/jsondata/ramrojob.json','r') as readfile:
@@ -48,8 +47,12 @@ def ramrojob():
             salary = soup.find('div', itemprop="baseSalary").get_text(strip=True)
             salary = salary.split(':')[1]
             deadline = soup.find('span', itemprop="validThrough").get_text(strip=True)
-            time = soup.find('li', itemprop="employmentType").get_text(strip=True)
-            time = time.split(':')[1]
+            try:
+                time = soup.find('li', itemprop="employmentType").get_text(strip=True)
+                time = time.split(':')[1]
+            except:
+                pass
+
             var = soup.find('ul', class_='job-detail-list').find_all('li')
             temp = "Opening"
             vacancy = ""
@@ -85,3 +88,4 @@ def ramrojob():
 
     with open('C:/Projects/itjobseeker/public/jsondata/ramrojob.json', 'w') as outfile:
         json.dump(data, outfile)
+ramrojob()
